@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenClaw Watchdog
+After=openclaw-gateway.service
+
+[Service]
+Type=simple
+User=henry
+ExecStart=/opt/openclaw/scripts/openclaw_watchdog.sh
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

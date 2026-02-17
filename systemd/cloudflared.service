@@ -1,0 +1,21 @@
+[Unit]
+Description=Cloudflare Tunnel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=henry
+ExecStart=/usr/bin/cloudflared tunnel --config /home/henry/.cloudflared/config.yml run
+Restart=on-failure
+RestartSec=10s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/henry/.cloudflared
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
